@@ -44,8 +44,16 @@ function createIcon(classes) {
 }
 
 
+function removeItem (e) {
+  if (e.target.parentElement.classList.contains("remove-item")) {
+    e.target.parentElement.parentElement.remove()
+  }
+}
+
 
 //Event Listeners
 
 //01 
 itemForm.addEventListener("submit", addItem)
+itemList.addEventListener("click", removeItem)
+
