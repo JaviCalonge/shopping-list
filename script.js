@@ -28,7 +28,7 @@ function addItem(e) {
 
   checkUI()
 
-  itemInput.vale = ""
+  itemInput.value = ""
 }
 
 function createButton(classes) {
@@ -64,6 +64,24 @@ function clearItems () {
   checkUI()
 }
 
+function filterItems (e) {
+  const items = itemList.querySelectorAll("li")
+  const text = e.target.value.toLowerCase()
+
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase()
+    
+    //con indexOf comparamos itemName con (text), el resultado será si coincide true
+    //si no coincido -1, así trabaja, así que lo que queremos es todo lo que no sea -1
+    //por eso ponemos != -1, para que nos dé todo lo que no sea -1 y por tanto coincida
+    if (itemName.indexOf(text) != -1) {
+      item.style.display = "flex"
+    } else {
+      item.style.display = "none"
+    }
+  })
+}
+
 
 function checkUI () {
   const items = itemList.querySelectorAll("li")
@@ -82,6 +100,7 @@ function checkUI () {
 itemForm.addEventListener("submit", addItem)
 itemList.addEventListener("click", removeItem)
 clearBtn.addEventListener("click", clearItems)
+itemFilter.addEventListener("input", filterItems)
 
 checkUI()
 
