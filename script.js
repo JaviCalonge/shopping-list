@@ -1,6 +1,7 @@
 const itemForm = document.getElementById("item-form")
 const itemInput = document.getElementById("item-input")
 const itemList = document.getElementById("item-list")
+const clearBtn = document.getElementById("clear")
 
 
 
@@ -50,10 +51,17 @@ function removeItem (e) {
   }
 }
 
+function clearItems () {
+  while (itemList.firstChild) {
+    itemList.removeChild(itemList.firstChild)
+  }
+}
+
 
 //Event Listeners
 
 //01 
 itemForm.addEventListener("submit", addItem)
 itemList.addEventListener("click", removeItem)
+clearBtn.addEventListener("click", clearItems)
 
