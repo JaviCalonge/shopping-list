@@ -4,6 +4,11 @@ const itemList = document.getElementById("item-list")
 const clearBtn = document.getElementById("clear")
 const itemFilter = document.getElementById("filter")
 
+function displayItems () {
+  const itemsFromStorage = getItemsFromStorage()
+  itemsFromStorage.forEach(item => addItemToDOM(item))
+  checkUI()
+}
 
 function onAddItemSubmit(e) {
   e.preventDefault()
@@ -55,7 +60,7 @@ function createIcon(classes) {
 }
 
 function addItemToStorage (item) {
-  const itemsFromStorage = getItemsFromStorage()
+   itemsFromStorage = getItemsFromStorage()
 
   //Add new item to array
   itemsFromStorage.push(item)
@@ -121,12 +126,17 @@ function checkUI () {
     itemFilter.style.display = "block"
   }
 }
- 
-//Event Listeners
 
+//Initializa app
+function init () {
+//Event Listeners
 itemForm.addEventListener("submit", onAddItemSubmit)
 itemList.addEventListener("click", removeItem)
 clearBtn.addEventListener("click", clearItems)
 itemFilter.addEventListener("input", filterItems)
+document.addEventListener("DOMContentLoaded", displayItems)
 
 checkUI()
+}
+
+init()
