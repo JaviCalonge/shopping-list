@@ -15,7 +15,9 @@ function displayItems () {
 function onAddItemSubmit(e) {
   e.preventDefault()
   
-  const newItem = itemInput.value
+  //const newItem = itemInput.value
+
+  const newItem = itemInput.value.trim();
   
   //validate Input
   if (newItem === "") {
